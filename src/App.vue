@@ -2,9 +2,9 @@
   <div id="app">
 
     <todo-header></todo-header>
-    <todo-input v-on:addItem="addOneItem"></todo-input>
-    <todo-list v-bind:propsdata="todoItems" v-on:deleteItem="deleteOneItem" v-on:toggleItem="toggleOneItem"></todo-list>
-    <todo-footer v-on:clearAll="clearAll"></todo-footer>
+    <todo-input></todo-input>
+    <todo-list></todo-list>
+    <todo-footer></todo-footer>
 
   </div>
 </template>
@@ -29,33 +29,27 @@ export default {
     }
   },
   methods: {
-    addOneItem(Item){
-      const obj = {completed: false, item: Item};
-      localStorage.setItem(Item,JSON.stringify(obj));
-      this.todoItems.push(obj);
-    },
-    deleteOneItem(todoItem,index){
-      localStorage.removeItem(todoItem.item);
-      this.todoItems.splice(index, 1)
-    },
-    toggleOneItem(todoItem,index){
-      this.todoItems[index].completed = !this.todoItems[index].completed;
-      localStorage.removeItem(todoItem.item);
-      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
-    },
-    clearAll(){
-      localStorage.clear();
-      this.todoItems = [];
-    }
+    // addOneItem(Item){
+    //   const obj = {completed: false, item: Item};
+    //   localStorage.setItem(Item,JSON.stringify(obj));
+    //   this.todoItems.push(obj);
+    // },
+    // deleteOneItem(todoItem,index){
+    //   localStorage.removeItem(todoItem.item);
+    //   this.todoItems.splice(index, 1)
+    // },
+    // toggleOneItem(todoItem,index){
+    //   this.todoItems[index].completed = !this.todoItems[index].completed;
+    //   localStorage.removeItem(todoItem.item);
+    //   localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+    // },
+    // clearAll(){
+    //   localStorage.clear();
+    //   this.todoItems = [];
+    // }
   },
   created(){
-    if (localStorage.length > 0){
-      for (let i = 0; i < localStorage.length; i++) {
-        if(localStorage.key(i) !== 'loglevel:webpack-dev-server'){
-          this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-        }
-      }
-    }
+
   }
 }
 </script>
