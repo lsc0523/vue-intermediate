@@ -18,37 +18,37 @@ import TodoFooter from './components/TodoFooter.vue'
 export default {
   name: 'App',
   components: {
-    'TodoHeader': TodoHeader,
-    'TodoInput': TodoInput,
-    'TodoList': TodoList,
-    'TodoFooter': TodoFooter
+    TodoHeader,
+    TodoInput,
+    TodoList,
+    TodoFooter
   },
-  data: function (){
+  data(){
     return{
       todoItems : []
     }
   },
   methods: {
-    addOneItem: function (Item){
-      let obj = {completed: false, item: Item};
+    addOneItem(Item){
+      const obj = {completed: false, item: Item};
       localStorage.setItem(Item,JSON.stringify(obj));
       this.todoItems.push(obj);
     },
-    deleteOneItem: function(todoItem,index){
+    deleteOneItem(todoItem,index){
       localStorage.removeItem(todoItem.item);
       this.todoItems.splice(index, 1)
     },
-    toggleOneItem: function (todoItem,index){
+    toggleOneItem(todoItem,index){
       this.todoItems[index].completed = !this.todoItems[index].completed;
       localStorage.removeItem(todoItem.item);
       localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
     },
-    clearAll: function(){
+    clearAll(){
       localStorage.clear();
       this.todoItems = [];
     }
   },
-  created: function(){
+  created(){
     if (localStorage.length > 0){
       for (let i = 0; i < localStorage.length; i++) {
         if(localStorage.key(i) !== 'loglevel:webpack-dev-server'){
