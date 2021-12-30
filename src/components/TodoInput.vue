@@ -24,7 +24,7 @@
 <script>
 
 import Modal from "@/components/common/Modal";
-
+import { mapMutations } from 'vuex'
 export default {
   name: "TodoInput",
   data (){
@@ -34,10 +34,11 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['addOneItem']),
     addTodo (){
       if (this.newTodoItem !== ''){
         // this.$emit("addItem",this.newTodoItem);
-        this.$store.commit('addOneItem',this.newTodoItem);
+        this.addOneItem(this.newTodoItem);
         this.clearInput();
       }
       else{
