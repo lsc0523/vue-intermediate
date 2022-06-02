@@ -12,7 +12,7 @@
         <i class="fas fa-times closeModalBtn" @click="showModal = false"></i>
       </h3>
       <div slot="body">
-        아무것도 입력하지 않으셨습니다.
+        아무것도 입력하지 않으셨습니다. 테스트
       </div>
       <div slot="footer">
 
